@@ -7,7 +7,7 @@ interface Props {
     progress?: number;
 }
 
-export default function TaskProgressCard({progress = 85}: Props){
+export default function TaskProgressCard({progress=85}: Props){
     return(
         <View style={styles.card}>
 
