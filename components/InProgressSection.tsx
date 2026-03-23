@@ -81,7 +81,7 @@ function TaskCard({ item }: { item: ProgressTask }) {
                     width={CARD_WIDTH - 40}
                     height={6}
                     color={item.progressColor}
-                    unfilledColor="rgba(0,0,0,0.8)"
+                    unfilledColor="#fff"
                     borderWidth={0}
                     borderRadius={8}
                     animated={true}
