@@ -5,13 +5,14 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
+  SafeAreaView
 } from "react-native";
+
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 export default function HomeHeader() {
   return (
-    <View style={styles.headerWrapper}>
+    <View style={[styles.headerWrapper, { paddingTop: 40}]}>
       <SafeAreaView>
         <View style={styles.headerRow}>
 
@@ -28,8 +29,8 @@ export default function HomeHeader() {
           </View>
 
           {/* Right: Notification Bell */}
-          <TouchableOpacity style={styles.bellButton} activeOpacity={0.7}>
-            <MaterialIcons name="notifications" size={24} color="black" />
+          <TouchableOpacity style={styles.bellButton} activeOpacity={0.8}>
+            <MaterialIcons name="notifications" size={24} color="black"/>
           </TouchableOpacity>
 
         </View>

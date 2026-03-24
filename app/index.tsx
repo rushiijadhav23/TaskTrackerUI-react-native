@@ -6,9 +6,10 @@ import TaskGroupsSection from "../components/TaskGroupsSection";
 
 export default function Index() {
   return (
+  
     <View style={styles.container}>
       <HomeHeader />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 40}}>
         <TaskProgressCard progress={85}/>
         <InProgressSection/>
         <TaskGroupsSection/>
