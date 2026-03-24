@@ -1,8 +1,12 @@
 import React from "react";
 import { View, Text, FlatList, StyleSheet, Dimensions } from "react-native";
 import * as Progress from "react-native-progress"
+import { Ionicons, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
-// - Data
+// - Icon types
+    type IconFamily = "Ionicons" | "Feather" | "MaterialCommunityIcons";
+
+// - Data types
 type ProgressTask = {
     id: string;
     category: string;
@@ -11,7 +15,9 @@ type ProgressTask = {
     progressColor: string;
     cardBg: string;
     iconBg: string;
-    iconEmoji: string;
+    iconColor: string;
+    iconName: string;
+    iconFamily: IconFamily;
 }
 
 const TASKS: ProgressTask[] = [
@@ -23,7 +29,9 @@ const TASKS: ProgressTask[] = [
         progressColor: "#4B7BFF",
         cardBg: "#E7F1FF",
         iconBg: "#FFD6E0",
-        iconEmoji: "🛒",
+        iconColor: "#FF6B9D",
+        iconName: "cart",
+        iconFamily: "Ionicons",
     },
     {
         id: "2",
@@ -33,7 +41,9 @@ const TASKS: ProgressTask[] = [
         progressColor: "#FF6B6B",
         cardBg: "#FFF0EE",
         iconBg: "#FFD6C8",
-        iconEmoji: "🍔",
+        iconColor: "#FF6B6B",
+        iconName: "restaurant",
+        iconFamily: "Ionicons",
     },
     {
         id: "3",
@@ -43,7 +53,9 @@ const TASKS: ProgressTask[] = [
         progressColor: "#6BCB77",
         cardBg: "#EEFBF0",
         iconBg: "#C8F5CE",
-        iconEmoji: "📚",
+        iconColor: "#6BCB77",
+        iconName: "book-open",
+        iconFamily: "Feather",
     },
     {
         id: "4",
@@ -53,11 +65,49 @@ const TASKS: ProgressTask[] = [
         progressColor: "#FFB830",
         cardBg: "#FFFBEE",
         iconBg: "#FFE9B0",
-        iconEmoji: "🎨",
+        iconColor: "#FFB830",
+        iconName: "color-palette",
+        iconFamily: "Ionicons",
+    },
+    {
+        id: "5",
+        category: "Health & Fitness",
+        title: "Morning workout routine",
+        progress: 0.65,
+        progressColor: "#26C485",
+        cardBg: "#E2F8F0",
+        iconBg: "#B8F0DA",
+        iconColor: "#26C485",
+        iconName: "barbell",
+        iconFamily: "Ionicons",
+    },
+    {
+        id: "6",
+        category: "UI/UX Design",
+        title: "Dashboard redesign for client",
+        progress: 0.85,
+        progressColor: "#E056FD",
+        cardBg: "#F9EEFF",
+        iconBg: "#F0C8FF",
+        iconColor: "#E056FD",
+        iconName: "brush",
+        iconFamily: "Ionicons",
     },
 ];
 
 const CARD_WIDTH = Dimensions.get("window").width * 0.58;
+
+// - Icon Render
+function CardIcon({ family, name, color }: {family: IconFamily; name: string; color: string}) {
+    switch (family) {
+        case "Ionicons": 
+            return <Ionicons name={name as any} size={18} color={color} />;
+        case "Feather": 
+            return <Feather name={name as any} size={18} color={color} />;
+        case "MaterialCommunityIcons":
+            return <MaterialCommunityIcons name={name as any} size={18} color={color} />;
+    }
+}
 
 // - Card
 function TaskCard({ item }: { item: ProgressTask }) {
@@ -67,7 +117,7 @@ function TaskCard({ item }: { item: ProgressTask }) {
             <View style={styles.cardHeader}>
                 <Text style={styles.categoryText}>{item.category}</Text>
                 <View style={[styles.iconBox, { backgroundColor: item.iconBg }]}>
-                    <Text style={styles.iconEmoji}>{item.iconEmoji}</Text>
+                    <CardIcon family={item.iconFamily} name={item.iconName} color={item.iconColor} />
                 </View>
             </View>
 
@@ -81,7 +131,7 @@ function TaskCard({ item }: { item: ProgressTask }) {
                     width={CARD_WIDTH - 40}
                     height={6}
                     color={item.progressColor}
-                    unfilledColor="#fff"
+                    unfilledColor="rgba(0,0,0,0.06)"
                     borderWidth={0}
                     borderRadius={8}
                     animated={true}

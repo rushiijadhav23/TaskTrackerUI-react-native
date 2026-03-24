@@ -2,6 +2,7 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import HomeHeader from "../components/HomeHeader";
 import TaskProgressCard from "../components/TaskProgressCard";
 import InProgressSection from "../components/InProgressSection";
+import TaskGroupsSection from "../components/TaskGroupsSection";
 
 export default function Index() {
   return (
@@ -10,6 +11,7 @@ export default function Index() {
       <ScrollView showsVerticalScrollIndicator={false}>
         <TaskProgressCard progress={85}/>
         <InProgressSection/>
+        <TaskGroupsSection/>
       </ScrollView>
     </View>
   );
